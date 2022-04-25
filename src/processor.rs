@@ -18,6 +18,9 @@ impl Processor {
         accounts: &[AccountInfo],
         instruction_data: &[u8],
     ) -> ProgramResult {
+        // This turn all errs into ProgramError::InvalidInstructionData.
+        // Error: Transaction 38pmfZi5cZKsrfsvN8FVBaMSZMEiTUV1rUD6bg3KahaiKs6MwJBshZKQUY7wWY99BBJN25xecsoeshmNLUs11B1T 
+        // failed ({"err":{"InstructionError":[1,{"BorshIoError":"Unknown"}]}})
         let instruction = CounterInstruction::try_from_slice(instruction_data)
             .map_err(|_| ProgramError::InvalidInstructionData)?;
 
